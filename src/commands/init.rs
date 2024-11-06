@@ -3,7 +3,7 @@ use std::path::PathBuf;
 
 const DEFAULT_HEAD: &'static str = "ref: refs/heads/main\n";
 
-pub(crate) fn init_repository(directory: PathBuf) {
+pub(crate) fn execute(directory: PathBuf) {
     let git_dir = directory.join(".git");
     if git_dir.exists() { panic!("ERROR: the directory already contains a .git directory") }
 

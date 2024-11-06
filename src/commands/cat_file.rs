@@ -1,3 +1,3 @@
-pub(crate) fn cat(sha: String) {
+pub(crate) fn execute(sha: String) {
 
 }
