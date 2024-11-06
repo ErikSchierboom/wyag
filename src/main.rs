@@ -11,6 +11,7 @@ struct Args {
 
 #[derive(Subcommand, Debug)]
 enum Command {
+    /// Initialize a new Git repository
     Init
 }
 
