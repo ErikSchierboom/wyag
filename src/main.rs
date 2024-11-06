@@ -1,3 +1,22 @@
+use clap::{Parser, Subcommand};
+
+mod commands;
+
+#[derive(Parser, Debug)]
+#[command(version, about, long_about = None)]
+struct Args {
+    #[command(subcommand)]
+    command: Command
+}
+
+#[derive(Subcommand, Debug)]
+enum Command {
+    Init
+}
+
 fn main() {
-    println!("Hello, world!");
+    let args = Args::parse();
+    match args.command {
+        Command::Init => commands::init::init_repository()
+    }
 }
