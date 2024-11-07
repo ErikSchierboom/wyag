@@ -34,7 +34,7 @@ enum Command {
         write: bool,
 
         #[arg(short = 't', default_value = "blob")]
-        object_type: HashObjectType,
+        object_type: ObjectType,
 
         /// The file which contents to hash
         #[arg(index = 1)]
@@ -48,22 +48,22 @@ enum Command {
     },
 }
 
-/// Specify the type of object to be created
+/// Specify the type of object
 #[derive(ValueEnum, Debug, Clone)]
-enum HashObjectType {
+enum ObjectType {
     Commit,
     Tree,
     Blob,
     Tag
 }
 
-impl Display for HashObjectType {
+impl Display for ObjectType {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
         match self {
-            HashObjectType::Commit => f.write_str("commit"),
-            HashObjectType::Tree => f.write_str("tree"),
-            HashObjectType::Blob => f.write_str("blob"),
-            HashObjectType::Tag => f.write_str("tag"),
+            Self::Commit => f.write_str("commit"),
+            Self::Tree => f.write_str("tree"),
+            Self::Blob => f.write_str("blob"),
+            Self::Tag => f.write_str("tag"),
         }
     }
 }

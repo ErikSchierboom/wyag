@@ -3,9 +3,9 @@ use std::path::PathBuf;
 
 use sha1::{Digest, Sha1};
 
-use crate::HashObjectType;
+use crate::ObjectType;
 
-pub(crate) fn execute(write: bool, file: PathBuf, object_type: HashObjectType) {
+pub(crate) fn execute(write: bool, file: PathBuf, object_type: ObjectType) {
     let contents = fs::read_to_string(file).expect("ERROR: could not find file");
 
     let entry = format!("{} {}\0{}", object_type, contents.len(), contents);
