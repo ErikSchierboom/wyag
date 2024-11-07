@@ -1,3 +1,5 @@
+extern crate core;
+
 use std::fmt::{Display, Formatter};
 use std::path::PathBuf;
 use clap::{Parser, Subcommand, ValueEnum};
