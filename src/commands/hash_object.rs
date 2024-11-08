@@ -9,6 +9,7 @@ use sha1::{Digest, Sha1};
 
 use crate::ObjectType;
 
+// Create type for Object (including object_type and hash() method)
 pub(crate) fn execute(write: bool, file: PathBuf, object_type: ObjectType) {
     let contents = fs::read_to_string(&file).expect("ERROR: could not find file");
 
