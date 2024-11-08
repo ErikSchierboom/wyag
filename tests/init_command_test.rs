@@ -9,7 +9,7 @@ fn test_init_in_non_git_dir_succeeds() {
     let temp_dir = TempDir::new();
 
     // TODO: create directory without .git directory
-    let status = Binary::new(temp_dir.path)
+    let status = Binary::new(&temp_dir.path)
         .run(["init"])
         .expect("failed to run 'init' command");
 
@@ -26,7 +26,7 @@ fn test_init_in_git_dir_fails() {
         .status()
         .expect("cannot run git init");
 
-    let status = Binary::new(temp_dir.path)
+    let status = Binary::new(&temp_dir.path)
         .run(["init"])
         .expect("failed to run 'init' command");
 

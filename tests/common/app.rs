@@ -3,13 +3,13 @@ use std::ffi::OsStr;
 use std::path::PathBuf;
 use std::process::{Command, ExitStatus};
 
-pub(crate) struct Binary {
+pub(crate) struct Binary<'a> {
     path: PathBuf,
-    dir: PathBuf
+    dir: &'a PathBuf
 }
 
-impl Binary {
-    pub(crate) fn new(dir: PathBuf) -> Self {
+impl<'a> Binary<'a> {
+    pub(crate) fn new(dir: &'a PathBuf) -> Self {
         Self::build();
 
         Self { path: Self::path(), dir }
@@ -20,7 +20,7 @@ impl Binary {
             I: IntoIterator<Item = S>,
             S: AsRef<OsStr>
     {
-        Command::new(&self.path).args(args).current_dir(&self.dir).status()
+        Command::new(&self.path).args(args).current_dir(self.dir).status()
     }
 
     fn build() {

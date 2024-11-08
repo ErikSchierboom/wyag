@@ -9,6 +9,12 @@ pub(crate) struct TempDir {
     pub path: PathBuf,
 }
 
+impl Drop for TempDir {
+    fn drop(&mut self) {
+        fs::remove_dir_all(&self.path).expect("could not remove temp dir")
+    }
+}
+
 impl TempDir {
     pub(crate) fn new() -> Self {
         let path = temp_dir().join(Self::random_name());
