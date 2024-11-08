@@ -5,12 +5,14 @@ use std::process::{Command, ExitStatus};
 
 pub(crate) struct Binary {
     path: PathBuf,
+    dir: PathBuf
 }
 
 impl Binary {
-    pub(crate) fn new() -> Self {
+    pub(crate) fn new(dir: PathBuf) -> Self {
         Self::build();
-        Self { path: Self::path() }
+
+        Self { path: Self::path(), dir }
     }
 
     pub(crate) fn run<I, S>(&self, args: I) -> std::io::Result<ExitStatus>
@@ -18,7 +20,7 @@ impl Binary {
             I: IntoIterator<Item = S>,
             S: AsRef<OsStr>
     {
-        Command::new(&self.path).args(args).status()
+        Command::new(&self.path).args(args).current_dir(&self.dir).status()
     }
 
     fn build() {
