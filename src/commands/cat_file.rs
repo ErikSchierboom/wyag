@@ -15,4 +15,5 @@ pub(crate) fn execute(sha: String) {
     let mut blob_object = String::new();
     let mut decoder = ZlibDecoder::new(file);
     decoder.read_to_string(&mut blob_object).unwrap();
+    println!("{}", blob_object)
 }

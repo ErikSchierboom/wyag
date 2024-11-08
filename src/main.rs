@@ -25,6 +25,8 @@ enum Command {
     },
     /// Output a file
     CatFile {
+        // TODO: add -p/-t/-s
+
         /// The SHA of the file
         #[arg(index = 1)]
         sha: String
